@@ -10,9 +10,9 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["*"]
 
 
 cloudinary.config(
@@ -43,14 +43,14 @@ INSTALLED_APPS = [
 # MIDDLEWARE
 # =========================
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',   # 🔥 MUST be FIRST
+    'corsheaders.middleware.CorsMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
 
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -85,18 +85,18 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # =========================
 # DATABASE
 # =========================
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
 }
 
 
 # =========================
 # STATIC & MEDIA
 # =========================
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -107,6 +107,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # =========================
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
+    "https://cayauction.onrender.com"
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -131,15 +132,16 @@ CORS_ALLOW_HEADERS = [
 # =========================
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5173",
+    "https://cayauction.onrender.com"
 ]
 
 
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
 
-SESSION_COOKIE_SECURE = False   # keep False for localhost
-CSRF_COOKIE_SECURE = False
-
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = False
 
