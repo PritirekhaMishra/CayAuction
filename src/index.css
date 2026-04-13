@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GLOBAL RESET */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #040B1A, #0B1C2F);
+  color: #F5F1E8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.glass-card,
+.bento-card,
+.luxury-card {
+  background: rgba(11, 28, 47, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  transition: all 0.5s ease;
+}
+
+.glass-card:hover,
+.bento-card:hover,
+.luxury-card:hover {
+  background: rgba(11, 28, 47, 0.85);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-8px) scale(1.02);
+}
+
+.btn-gold {
+  border-radius: 9999px;
+  background: linear-gradient(120deg, #C8A96A, #E2C97E 65%, #C8A96A);
+  color: #040B1A;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  box-shadow: 0 0 28px rgba(200, 169, 106, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 40px rgba(226, 201, 126, 0.9), inset 0 0 12px rgba(255, 255, 255, 0.45);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(110deg, #C8A96A, #E2C97E, #F9EEC3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.badge-glow {
+  background: linear-gradient(120deg, rgba(200, 169, 106, 0.15), rgba(226, 201, 126, 0.3));
+  border: 1px solid rgba(226, 201, 126, 0.45);
+  color: #E2C97E;
+  box-shadow: 0 0 18px rgba(226, 201, 126, 0.35);
+}
+
+/* Luxury Auction Additions */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(11,28,47,0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #F5F1E8;
+}
+
+.live-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  background: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16,185,129,0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+.hero-glass-card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 25px 80px rgba(0,0,0,0.7);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}

@@ -1,0 +1,50 @@
+/* Luxury Auction Additions */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(11,28,47,0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #F5F1E8;
+}
+
+.live-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  background: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16,185,129,0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+.hero-glass-card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 25px 80px rgba(0,0,0,0.7);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
